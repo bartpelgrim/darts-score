@@ -1,0 +1,2 @@
+class InvalidScoreException(BaseException):
+    pass
