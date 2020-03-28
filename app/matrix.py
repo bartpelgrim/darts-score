@@ -15,14 +15,23 @@ class MatrixDriver:
         self.font = graphics.Font()
         self.font.LoadFont('/home/pi/rpi-rgb-led-matrix/fonts/6x12.bdf')
 
-        self.player_1_score = GAME_STARTING_SCORE
-        self.player_2_score = GAME_STARTING_SCORE
-
-    def draw_text(self, player: int, text: str, color):
+    def draw_text(self, player: int, text: str, color=graphics.Color(255, 0, 0)):
         if player == 0:
-            x, y = 1, 1
+            x, y = 0, 9
         elif player == 1:
-            x, y = 1, 17
+            x, y = 0, 18
         else:
             raise ValueError(f'Unknown player, {player}')
         graphics.DrawText(self.matrix, self.font, x, y, color, text)
+
+    def draw_active_player(self, player: int):
+        if player == 0:
+            x, y = 29, 9
+        elif player == 1:
+            x, y = 29, 18
+        else:
+            raise ValueError(f'Unknown player, {player}')
+        graphics.DrawText(self.matrix, self.font, x, y, graphics.Color(255, 0, 0), '<')
+
+    def draw_games_won(self, won1, won2):
+        graphics.DrawText(self.matrix, self.font, 0, 27, graphics.Color(255, 0, 0), f'G:{won1}-{won2}')
