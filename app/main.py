@@ -1,10 +1,13 @@
+from exception import PlayerCountException
 from match import Match
 from player import Player
 
 
 def run():
     match = Match()
-    player_count = int(input('How many players? '))
+    player_count = int(input('How many players (1-2)? '))
+    if player_count != 1 and player_count != 2:
+        raise PlayerCountException('This is for 1 or 2 players only')
     for i in range(player_count):
         player_name = input(f'Player {i+1} name: ')
         match.add_player(Player(player_name))
