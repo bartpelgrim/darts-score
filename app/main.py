@@ -1,5 +1,5 @@
-from app.match import Match
-from app.player import Player
+from match import Match
+from player import Player
 
 
 def run():
@@ -11,7 +11,7 @@ def run():
     match.start()
     while True:
         for player in match.players:
-            print(f'Player {player.initial}: {player.score}')
+            print(f'Player {player.initial}: Games: {player.games_won} - Score: {player.score}')
         received_input = input(f'Player {match.game.active_player.initial} score: ')
         if received_input == 'exit':
             break

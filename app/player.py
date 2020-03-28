@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from app.exception import InvalidScoreException
+from exception import InvalidScoreException
 
 
 @dataclass

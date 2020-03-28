@@ -1,5 +1,5 @@
-from app.game import Game
-from app.player import Player
+from game import Game
+from player import Player
 
 
 class Match:

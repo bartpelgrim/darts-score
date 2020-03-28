@@ -1,5 +1,5 @@
-from app.exception import InvalidScoreException
-from app.player import Player
+from exception import InvalidScoreException
+from player import Player
 
 GAME_STARTING_SCORE = 501
 
