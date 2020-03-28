@@ -1,8 +1,5 @@
-from typing import List
-
 from game import Game
 from matrix import MatrixDriver
-from match import Match
 
 
 class MatrixController:
@@ -18,6 +15,6 @@ class MatrixController:
             if game.players[i] == game.active_player:
                 self.matrix_driver.draw_active_player(i)
 
-    def draw_games_won(self, match: Match):
+    def draw_games_won(self, match):
         if len(match.players) == 2:
             self.matrix_driver.draw_games_won(match.players[0].games_won, match.players[1].games_won)
