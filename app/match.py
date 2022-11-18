@@ -33,6 +33,10 @@ class Match:
             return True
         return False
 
+    def undo_score(self):
+        self.game.undo_score()
+        self.display_scores()
+
     def start_new_game(self):
         self.game = Game(self.players, 501, self.next_starting_player())
         self.display_scores()

@@ -34,5 +34,11 @@ def restart():
     return render_template('match.html', player=match.game.active_player.name)
 
 
+@app.route('/undo', methods=['POST'])
+def undo():
+    match.undo_score()
+    return render_template('match.html', player=match.game.active_player.name)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

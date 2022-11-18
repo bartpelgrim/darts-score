@@ -11,6 +11,7 @@ class Game:
         self.starting_score = starting_score
         self.reset_score()
         self.active_player = None
+        self.previous_player = None
         self.ended = False
         self.set_turn_to_starting_player(starting_player)
 
@@ -23,6 +24,7 @@ class Game:
             self.next_player()
 
     def next_player(self):
+        self.previous_player = self.active_player
         try:
             self.active_player = next(self.player_queue)
         except StopIteration:
@@ -40,4 +42,7 @@ class Game:
         except InvalidScoreException:
             return False
 
-
+    def undo_score(self):
+        self.previous_player.undo_score()
+        self.active_player = self.previous_player
+        self.next_player()
