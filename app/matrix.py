@@ -2,6 +2,9 @@ from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 
 
 class MatrixDriver:
+    RED = graphics.Color(255, 0, 0)
+    GREEN = graphics.Color(0, 255, 0)
+
     def __init__(self):
         options = RGBMatrixOptions()
         options.rows = 32

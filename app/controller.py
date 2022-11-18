@@ -1,5 +1,6 @@
 from game import Game
 from matrix import MatrixDriver
+from utils import is_finish_score
 
 
 class MatrixController:
@@ -11,7 +12,8 @@ class MatrixController:
         for i in range(len(game.players)):
             initial = game.players[i].initial
             score = game.players[i].score
-            self.matrix_driver.draw_text(i, f'{initial}:{score}')
+            color = MatrixDriver.GREEN if is_finish_score(score) else MatrixDriver.RED
+            self.matrix_driver.draw_text(i, f'{initial}:{score}', color)
             if game.players[i] == game.active_player:
                 self.matrix_driver.draw_active_player(i)
 

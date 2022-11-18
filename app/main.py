@@ -30,7 +30,7 @@ def player_score():
 
 @app.route('/restart', methods=['POST'])
 def restart():
-    match.start_new_game()
+    match.restart()
     return render_template('match.html', player=match.game.active_player.name)
 
 

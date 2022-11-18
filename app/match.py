@@ -37,6 +37,11 @@ class Match:
         self.game = Game(self.players, 501, self.next_starting_player())
         self.display_scores()
 
+    def restart(self):
+        for player in self.players:
+            player.games_won = 0
+        self.start_new_game()
+
     def display_scores(self):
         pass
         self.matrix_controller.draw_game_scores(self.game)
