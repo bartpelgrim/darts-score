@@ -24,16 +24,20 @@ class Match:
             self.iterator = iter(self.players)
             return next(self.iterator)
 
-    def enter_score(self, amount: int):
-        self.game.record_player_score(amount)
-        self.display_scores()
-        if self.game.ended:
-            self.start_new_game()
+    def enter_score(self, amount: int) -> bool:
+        valid_score = self.game.record_player_score(amount)
+        if valid_score:
+            self.display_scores()
+            if self.game.ended:
+                self.start_new_game()
+            return True
+        return False
 
     def start_new_game(self):
         self.game = Game(self.players, 501, self.next_starting_player())
         self.display_scores()
 
     def display_scores(self):
+        pass
         self.matrix_controller.draw_game_scores(self.game)
         self.matrix_controller.draw_games_won(self)

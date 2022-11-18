@@ -1,13 +1,12 @@
-from dataclasses import dataclass
-
 from exception import InvalidScoreException
 
 
-@dataclass
 class Player:
-    initial: str
-    score: int = 0
-    games_won: int = 0
+    def __init__(self, name: str):
+        self.name = name
+        self.initial = self.name[0].upper()
+        self.score = 0
+        self.games_won = 0
 
     def record_score(self, amount: int):
         if amount < 0 or amount > 180:

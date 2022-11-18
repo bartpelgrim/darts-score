@@ -29,14 +29,15 @@ class Game:
             self.player_queue = iter(self.players)
             self.active_player = next(self.player_queue)
 
-    def record_player_score(self, amount: int):
+    def record_player_score(self, amount: int) -> bool:
         try:
             self.active_player.record_score(amount)
             if self.active_player.wins():
                 self.active_player.games_won += 1
                 self.ended = True
             self.next_player()
+            return True
         except InvalidScoreException:
-            print('Invalid score, try again')
+            return False
 
 

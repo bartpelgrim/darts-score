@@ -1,28 +1,38 @@
-from exception import PlayerCountException
+from flask import Flask, render_template, request
+
 from match import Match
 from player import Player
 
+app = Flask(__name__)
+match = Match()
 
-def run():
-    match = Match()
-    player_count = int(input('How many players (1-2)? '))
-    if player_count != 1 and player_count != 2:
-        raise PlayerCountException('This is for 1 or 2 players only')
-    for i in range(player_count):
-        player_name = input(f'Player {i+1} name: ')
-        match.add_player(Player(player_name))
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/enter_players', methods=['POST'])
+def enter_players():
+    result = request.form
+    match.add_player(Player(result['player1']))
+    match.add_player(Player(result['player2']))
     match.start()
-    while True:
-        for player in match.players:
-            print(f'Player {player.initial}: Games: {player.games_won} - Score: {player.score}')
-        received_input = input(f'Player {match.game.active_player.initial} score: ')
-        if received_input == 'exit':
-            break
-        try:
-            match.enter_score(int(received_input))
-        except ValueError:
-            print('Please enter a number, or type "exit" to quit')
+    return render_template('match.html', player=match.game.active_player.name)
+
+
+@app.route('/player_score', methods=['POST'])
+def player_score():
+    result = request.form
+    valid_score = match.enter_score(int(result['player_score']))
+    return render_template('match.html', player=match.game.active_player.name, error=not valid_score)
+
+
+@app.route('/restart', methods=['POST'])
+def restart():
+    match.start_new_game()
+    return render_template('match.html', player=match.game.active_player.name)
 
 
 if __name__ == '__main__':
-    run()
+    app.run(host='0.0.0.0')
