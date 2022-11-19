@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Darts Score</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
+<style>
+    body, html {height: 100%}
+</style>
 <body>
-    <div>
-        <form action="../enter_players" method="POST">
+    <div class="w3-container w3-text-black">
+        <form class="w3-display-middle" action="../enter_players" method="POST">
             <h1>Vul namen van spelers in</h1>
             <p>
                 <label>Speler 1</label>
-                <input name="player1" type="text">
+                <input class="w3-input w3-border" name="player1" type="text">
             </p>
             <p>
                 <label>Speler 2</label>
-                <input name="player2" type="text">
+                <input class="w3-input w3-border" name="player2" type="text">
             </p>
             <p>
-                <button>OK</button>
+                <button class="w3-btn w3-black">OK</button>
             </p>
         </form>
     </div>

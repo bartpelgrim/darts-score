@@ -3,28 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Darts match</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
+<style>
+    body, html {height: 100%}
+</style>
 <body onload="setFocusToInput()">
-    <div>
-        <form action="../player_score" method="POST">
+    <div class="w3-container w3-text-black">
+        <form class="w3-display-middle" action="../player_score" method="POST">
             <h1>{{player}} is aan de beurt</h1>
             <p>
                 <label>Score</label>
-                <input id="input" name="player_score" type="number">
+                <input class="w3-input w3-border" id="input" name="player_score" type="number">
             </p>
             <p>
-                <button>OK</button>
+                <button class="w3-btn w3-green" style="width:40%">OK</button>
             </p>
             <p>
-                <button formaction="/undo">Undo</button>
+                <button class="w3-btn w3-yellow" style="width:40%" formaction="/undo">Terug</button>
             </p>
             <p>
-                <button formaction="/restart">Restart</button>
+                <button class="w3-btn w3-red" style="width:40%" formaction="/restart">Start opnieuw</button>
             </p>
         </form>
         {% if error %}
-            <h3>Fout</h3>
-            <p>Ongeldige score</p>
+            <div class="w3-topmiddle w3-panel w3-red">
+                <h3>Fout</h3>
+                <p>Ongeldige score</p>
+            </div>
         {% endif %}
     </div>
 </body>
